@@ -12,6 +12,26 @@
       "name": "implement",
       "source": "./plugins/implement",
       "description": "Build TALXIS / Power Platform apps in a local-first monorepo: scaffold components with the TALXIS CLI (txc), validate with dotnet build, deploy as Package Deployer packages. Use when creating a new TALXIS project or working on an existing one."
+    },
+    {
+      "name": "support",
+      "source": "./plugins/support",
+      "description": "Troubleshoot TALXIS / Power Platform / Dataverse apps with evidence-first investigation: extract identifiers from the ticket, run targeted read-only queries and log lookups through the TALXIS CLI (txc), and write findings with a gated root-cause analysis and action plan. Use when investigating a support ticket, incident, bug report, or unexplained behavior in a live environment."
+    },
+    {
+      "name": "data",
+      "source": "./plugins/data",
+      "description": "Data lifecycle for TALXIS / Power Platform / Dataverse projects: test and reference data kept as source (CMT packages with stable GUIDs), volume-based routing between throwaway records and packaged seed data, and export round-trips through the TALXIS CLI (txc). Use when provisioning or seeding data in a TALXIS project."
+    },
+    {
+      "name": "consulting",
+      "source": "./plugins/consulting",
+      "description": "Business analysis and process modeling with UBML — capture raw stakeholder material verbatim (a documented sources/ + register workspace convention), extract candidate insights as UBML hypotheses pending confirmation, promote confirmed hypotheses into the operational model, and validate before every commit. Thin skills that steer the agent to the ubml CLI for everything it covers. Use when turning interviews, transcripts, or discovery notes into a structured business model."
+    },
+    {
+      "name": "design",
+      "source": "./plugins/design",
+      "description": "Design-phase skills for TALXIS / Power Platform / Dataverse projects: turn user-story acceptance criteria into executable Gherkin feature files in a companion tests repo, with coverage as a readiness gate. Use when authoring BDD tests from acceptance criteria or preparing a design backlog for implementation handover. Authors scenario content only — scaffolding or running test projects in the app workspace is the implement plugin’s test skill."
     }
   ]
 }
