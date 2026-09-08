@@ -5,14 +5,25 @@ description: Walks a stakeholder through extracted insights one at a time so eac
 
 # Validate insights
 
-Pin the CLI: `npx ubml@1.4 <command>`. `status` is an enum, and older validators
+Where this skill names a command the installed CLI does not have, you are on an
+older build than the skill was written for. Find the newer one - a release, or a
+local build from an open pull request - and run that everywhere this skill says
+`ubml`. Do not work around the missing command in prose; that is how a
+workaround outlives the gap it covered.
+
+Run a CLI new enough for this skill. `status` is an enum, and older validators
 accepted an invented value in silence - a workspace that looks reviewed and is
 not.
 
-**Contract:** one insight at a time, in the order the material was produced, with
-the source text shown beside the claim. The reviewer's answer moves a status; it
-never becomes a new claim. A session that ends with unwalked insights says so
-rather than implying coverage.
+**Contract:** one bundle at a time, in the order the material was produced: the
+source text, the claim drawn from it, and any model element that claim would
+create. The reviewer's answer moves a status; it never becomes a new claim. A
+session that ends with unwalked bundles says so rather than implying coverage.
+
+The element is reviewed here or nowhere. `derivedFrom` proves a claim was
+confirmed; it says nothing about whether anyone agreed the claim should become
+this actor, under this name, merged with that one. Promotion is too late to ask -
+by then it is dozens of decisions at once and the source is cold.
 
 ## Let the CLI drive the bookkeeping
 
@@ -41,10 +52,46 @@ it came second. And where a whole source turns out to restate an earlier one,
 say so before starting and offer to fold it into its parent rather than walking
 it twice.
 
-Show one insight per turn and then stop. `walk next` gives you one; showing two
+Show one bundle per turn and then stop. `walk next` gives you one; showing two
 is how a reviewer ends up approving in bulk.
 
 Everything below is the part `walk` cannot do.
+
+## Walk the claim and the element it would create together
+
+An insight carrying a proposal is one decision to the reviewer and two records in
+the workspace. Show both:
+
+```
+**Source says** …
+**Extracted as** …
+**Would add** AC01040 · actor · "Service Desk" · role, human
+`IN01230`
+```
+
+Three answers, not two. They may take the claim and reject the element - the
+extraction is right and the modelling is wrong. That is the most useful answer
+the format makes possible, and it is invisible if you only ask about the insight.
+
+| The answer | insight | element |
+| --- | --- | --- |
+| both right | `validated` | `reviewStatus: accepted` |
+| claim right, element wrong | `validated` | `reviewStatus: rejected`, and say why in its description |
+| claim wrong | `disputed` | `rejected` - an element from a disputed claim has nothing under it |
+| element right, different shape | `validated` | edit it, then `accepted` |
+
+A rejected element stays in the workspace. The record that a modelling decision
+was considered and turned down is what stops it being proposed again next
+quarter, and it costs one line.
+
+**Most insights carry no proposal.** Reasoning, rationale, a risk nobody took up.
+Those walk exactly as before, and an insight is never worth less for producing no
+element.
+
+**Ambiguity is the reviewer's to settle, not yours.** Where extraction could not
+tell which element a claim lands on - the source says "the account" and three
+different accounts exist - it says so in the proposal. Put the question to them
+rather than picking the reading that makes the bundle tidy.
 
 ## Only an answer to the insight on screen advances the walk
 
