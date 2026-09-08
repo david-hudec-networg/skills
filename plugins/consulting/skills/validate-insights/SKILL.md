@@ -24,12 +24,15 @@ by then it is dozens of decisions at once and the source is cold.
 ```
 ubml walk next             # the next proposed insight, source text beside the claim
 ubml walk set <id> <status>  # record the answer
+ubml walk set <id> <status> --by <name>   # and who gave it
+ubml walk legend             # what each status means, both vocabularies
+ubml walk context <id>       # what was said either side of the quote
 ```
 
 `walk next` orders by when the material was produced, not by ID - a stakeholder
 reads their own project as a story, and later sources arrive as answers to what
-earlier ones left open. It carries the position ("source 1 of 4, insight 2 of
-5"), which tells the reviewer how far through they are where an ID tells them
+earlier ones left open. It carries the position ("source 1 of 5, insight 2 of
+26"), which tells the reviewer how far through they are where an ID tells them
 nothing, and opens each source with how many insights it holds and how many
 restate something already walked, so they can spend attention on the ones that
 are new.
@@ -49,6 +52,19 @@ it twice.
 Show one bundle per turn and then stop. `walk next` gives you one; showing two
 is how a reviewer ends up approving in bulk.
 
+**And ask about one claim at a time.** The limit is not how much is on screen,
+it is how many answers one reply can carry. "Do you agree with both edits, and
+with accepting the step?" is three decisions, and it gets answered "yes" - by
+somebody who may have meant one of them. A claim and the element it produced
+can share a question, because they are one decision about one thing. Two claims
+cannot.
+
+The temptation to batch comes from the element. One element can rest on claims
+scattered across a whole meeting, and settling them together looks efficient -
+it is how a walk turns forty-six claims into eleven questions. Judge the element
+when you first meet it, with the quote on screen; that is the only moment the
+evidence is in front of the reviewer at all.
+
 Everything below is the part `walk` cannot do.
 
 ## Walk the claim and the element it would create together
@@ -56,6 +72,13 @@ Everything below is the part `walk` cannot do.
 `walk next` shows both: the claim, and any element it would create. Show what it
 emits - an insight carrying a proposal is one decision to the reviewer and two
 records in the workspace.
+
+Give a recommendation on every bundle, and say what it rests on - the quote
+alone, a conflict with another claim, a hedge in the wording, a precedent in
+the workspace, a dependency on somebody outside the room. A bare verdict invites
+agreement: the reviewer who cannot see why you think so has nothing to argue
+with, and "validated, validated" is what that sounds like. The reason is what
+makes disagreement possible, and disagreement is the point of the walk.
 
 Record each with `walk set <id>`; the id says which is meant, so an insight takes
 `validated` or `disputed` and an element takes `accepted` or `rejected`.
@@ -117,11 +140,24 @@ say so.
 | rejects it | status becomes `disputed`, and the claim stays in the workspace |
 | corrects the wording | the text changes, the source text does not, and you show the corrected claim back before moving on |
 | explains what a term meant | goes in `context`, and may resolve an apparent contradiction |
+| cannot place the vocabulary | `ubml walk legend` - the reviewer will not ask for a word they do not know they are missing |
+| asks what came before the quote | `ubml walk context <id>` - never send them back to the recording |
+| cannot settle it | status becomes `deferred`, with the reason and who can answer |
 | introduces something new | nothing, until it has a source of its own |
 
-The enum is `proposed`, `validated`, `disputed`, `retired` and nothing else - a
-rejected claim is `disputed`, not `invalidated`. Ask the CLI rather than
-inventing a word that reads right.
+The enum is `proposed`, `validated`, `disputed`, `deferred`, `retired` and
+nothing else - a rejected claim is `disputed`, not `invalidated`. Ask the CLI
+rather than inventing a word that reads right.
+
+`deferred` is an answer. A reviewer who reaches a claim and cannot confirm it -
+the term appears four different ways in the transcript, the person who knows was
+not on the call - has decided something, and leaving it `proposed` records the
+opposite. The walk then offers that claim every time and the review cannot get
+past it. Note who can settle it and what exactly they need to answer; "check
+with the business owner" is not a question anyone can take away.
+
+It is not `disputed`. A deferred claim may be perfectly true; what is missing is
+the means to confirm it.
 
 Show a correction back before moving on. Not as a question - they have answered -
 but as one line they can catch. A correction is where the author is most likely
