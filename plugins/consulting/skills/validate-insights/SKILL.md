@@ -5,7 +5,13 @@ description: Walks a stakeholder through extracted insights one at a time so eac
 
 # Validate insights
 
-Pin the CLI: `npx ubml@1.4 <command>`. `status` is an enum, and older validators
+Where this skill names a command the installed CLI does not have, you are on an
+older build than the skill was written for. Find the newer one - a release, or a
+local build from an open pull request - and run that everywhere this skill says
+`ubml`. Do not work around the missing command in prose; that is how a
+workaround outlives the gap it covered.
+
+Run a CLI new enough for this skill. `status` is an enum, and older validators
 accepted an invented value in silence - a workspace that looks reviewed and is
 not.
 

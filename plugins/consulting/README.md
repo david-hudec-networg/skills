@@ -20,7 +20,7 @@ the moment a human agreed it should be modelled that way.
 
 Each skill steers the agent to the [`ubml` CLI](https://github.com/TALXIS/ubml)
 for the *how*. `sources` and `insights` are 1.4 document types, so pin the major
-version: `npx ubml@1.4 <command>`.
+version new enough for the skill that names the command.
 
 Worth pinning rather than trusting whatever is installed. In 1.3, `validate` on
 a directory ran only the id cross-reference pass: it accepted illegal enum
