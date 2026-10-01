@@ -22,10 +22,17 @@ Pin the major version - `sources` and `insights` are 1.4 document types and
 older validators pass an invalid workspace in silence.
 
 ```
-npx ubml@1.4 --help    # the command surface - the authority
+ubml --help            # the command surface - the authority
 ubml validate --help   # what the validator checks, how to read output
 ubml validate .        # validate the whole workspace root
 ```
+
+Where this skill names a command the installed CLI does not have, you are on an
+older build than the skill was written for. Find the newer one - a release, or a
+local build from an open pull request - and run that everywhere this skill says
+`ubml`. Do not work around the missing command in prose; that is how a
+workaround outlives the gap it covered.
+
 
 A citation of an `SR#####` that does not exist fails like any dangling
 reference, and so does a source whose `file` points at nothing or holds a URL -

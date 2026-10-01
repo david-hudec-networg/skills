@@ -25,11 +25,18 @@ Pin the major version - `sources` and `insights` are 1.4 document types and
 older validators pass an invalid workspace in silence.
 
 ```
-npx ubml@1.4 --help      # the command surface - the authority
+ubml --help              # the command surface - the authority
 ubml show                # read the current model before changing it
 ubml schema <type>       # element shapes per document type
 ubml nextid <prefix>     # allocate every new ID (AC, EN, PR, ST, …)
 ```
+
+Where this skill names a command the installed CLI does not have, you are on an
+older build than the skill was written for. Find the newer one - a release, or a
+local build from an open pull request - and run that everywhere this skill says
+`ubml`. Do not work around the missing command in prose; that is how a
+workaround outlives the gap it covered.
+
 
 `show` lists what exists; `ids` does not - it prints a static cheat sheet. `add`
 scaffolds a NEW document only; extending one is a manual edit.
