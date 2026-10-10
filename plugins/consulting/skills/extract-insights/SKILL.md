@@ -13,6 +13,9 @@ source, and everything - insight and proposal alike - lands unreviewed.
 
 ## Ask the CLI first
 
+Wherever this skill says `ubml`, run the pinned preview release:
+`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.1/ubml-1.4.2-preview.1.tgz <command>`
+
 ```
 ubml init <name>            # scaffold a workspace, never write one by hand
 ubml show                   # what the workspace already holds
@@ -21,12 +24,6 @@ ubml schema insights
 ubml add sources            # scaffold a document that does not exist yet
 ubml nextid SR              # allocate every id
 ```
-
-Where this skill names a command the installed CLI does not have, you are on an
-older build than the skill was written for. Find the newer one - a release, or a
-local build from an open pull request - and run that everywhere this skill says
-`ubml`. Do not work around the missing command in prose; that is how a
-workaround outlives the gap it covered.
 
 Never write a UBML file from memory of the schema. If the validator rejects an
 edit, the edit is wrong. `add` scaffolds a new document; extending one is a

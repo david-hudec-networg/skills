@@ -19,13 +19,8 @@ the moment a human agreed it should be modelled that way.
 | `validate-model` | schema and cross-reference checking a workspace; gating every commit on zero errors |
 
 Each skill steers the agent to the [`ubml` CLI](https://github.com/TALXIS/ubml)
-for the *how*. `sources` and `insights` are 1.4 document types, so pin the major
-version new enough for the skill that names the command.
-
-Worth pinning rather than trusting whatever is installed. In 1.3, `validate` on
-a directory ran only the id cross-reference pass: it accepted illegal enum
-values, invented properties and missing required fields without a word, so a
-clean bill of health meant only that the YAML parsed.
+for the *how*, and runs it from the pinned preview release:
+`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.1/ubml-1.4.2-preview.1.tgz <command>`
 
 ## Two rules that span the pipeline
 

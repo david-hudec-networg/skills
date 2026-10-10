@@ -5,15 +5,8 @@ description: Walks a stakeholder through extracted insights one at a time so eac
 
 # Validate insights
 
-Where this skill names a command the installed CLI does not have, you are on an
-older build than the skill was written for. Find the newer one - a release, or a
-local build from an open pull request - and run that everywhere this skill says
-`ubml`. Do not work around the missing command in prose; that is how a
-workaround outlives the gap it covered.
-
-Run a CLI new enough for this skill. `status` is an enum, and older validators
-accepted an invented value in silence - a workspace that looks reviewed and is
-not.
+Wherever this skill says `ubml`, run the pinned preview release:
+`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.1/ubml-1.4.2-preview.1.tgz <command>`
 
 **Contract:** one bundle at a time, in the order the material was produced: the
 source text, the claim drawn from it, and any model element that claim would
