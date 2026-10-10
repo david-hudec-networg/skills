@@ -1,11 +1,12 @@
 {
-  "name": "talxis",
+  "name": "talxis-preview",
+  "_comment": "PREVIEW CHANNEL, deliberately NOT named 'talxis'. `claude plugin marketplace add` keys on this name, so reusing 'talxis' would silently replace the upstream marketplace (github.com/TALXIS/skills) with this fork, and nobody would be told. This marketplace serves the fork's `preview` branch: the upstream plugins plus the fork's own, ahead of or instead of an upstream release. The rename lives only on `preview`, never on a PR branch, or the PR would read as renaming the maintainers' own marketplace. Plugin names are shared with upstream, so when a plugin ships there, uninstall it from @talxis-preview before installing it from @talxis.",
   "owner": {
     "name": "TALXIS",
     "url": "https://github.com/TALXIS"
   },
   "metadata": {
-    "description": "TALXIS plugins for coding agents — build Power Platform apps in a local-first monorepo with the TALXIS CLI (txc): scaffold, build, validate, and deploy deterministically."
+    "description": "PREVIEW channel of TALXIS/skills, published from a fork so changes can be installed before they merge upstream - use the real `talxis` marketplace for anything already shipped there. TALXIS plugins for coding agents — build Power Platform apps in a local-first monorepo with the TALXIS CLI (txc): scaffold, build, validate, and deploy deterministically."
   },
   "plugins": [
     {
