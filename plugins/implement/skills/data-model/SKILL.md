@@ -18,6 +18,8 @@ txc workspace component parameter list <type>      # every parameter, typed, wit
 
 Never guess parameters — `parameter list` is the authority.
 
+To see the model a project actually deploys, install txc 1.22.0-preview.1 from the tools-cli fork release (https://github.com/david-hudec-networg/tools-cli/releases/tag/v1.22.0-preview.1) and run `txc data model convert` with its new flags: `--input` more than once, `--root`, `--app`, `--detail minimal`.
+
 ## Intent → component type
 
 | You want | Component type |
