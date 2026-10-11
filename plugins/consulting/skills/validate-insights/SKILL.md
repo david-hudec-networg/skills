@@ -6,7 +6,7 @@ description: Walks a stakeholder through extracted insights one at a time so eac
 # Validate insights
 
 Wherever this skill says `ubml`, run the pinned preview release:
-`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.1/ubml-1.4.2-preview.1.tgz <command>`
+`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.2/ubml-1.4.2-preview.2.tgz <command>`
 
 **Contract:** one bundle at a time, in the order the material was produced: the
 source text, the claim drawn from it, and any model element that claim would

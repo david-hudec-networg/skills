@@ -20,7 +20,7 @@ the moment a human agreed it should be modelled that way.
 
 Each skill steers the agent to the [`ubml` CLI](https://github.com/TALXIS/ubml)
 for the *how*, and runs it from the pinned preview release:
-`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.1/ubml-1.4.2-preview.1.tgz <command>`
+`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.2/ubml-1.4.2-preview.2.tgz <command>`
 
 ## Two rules that span the pipeline
 
