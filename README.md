@@ -19,12 +19,13 @@ of truth for the toolchain. For a complete example setup and hands-on demo, see
 
 Identical in **Claude Code** and **GitHub Copilot CLI**:
 
+<!-- Preview only: when this reaches master or goes upstream, point it back at TALXIS/skills. -->
 ```
-/plugin marketplace add TALXIS/skills
-/plugin install implement@talxis
+/plugin marketplace add david-hudec-networg/skills
+/plugin install implement@talxis-preview
 ```
 
-In **VS Code** (Copilot chat): add `"TALXIS/skills"` to the
+In **VS Code** (Copilot chat): add `"david-hudec-networg/skills"` to the
 `chat.plugins.marketplaces` setting and install `implement` from the Extensions
 view (`@agentPlugins`). One install registers the skills **and** the `txc` MCP server,
 available in every project folder.

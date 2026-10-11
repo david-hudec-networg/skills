@@ -40,9 +40,10 @@ the room's language.
 
 ## Install
 
+<!-- Preview only: when this reaches master or goes upstream, point it back at TALXIS/skills. -->
 ```
-/plugin marketplace add TALXIS/skills
-/plugin install consulting@talxis
+/plugin marketplace add david-hudec-networg/skills
+/plugin install consulting@talxis-preview
 ```
 
 ## Try it
