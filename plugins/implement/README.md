@@ -22,7 +22,8 @@ current `txc` gap — every file names the fix that deletes it
 
 ## Install
 
+<!-- Preview only: when this reaches master or goes upstream, point it back at TALXIS/skills. -->
 ```
-/plugin marketplace add TALXIS/skills
-/plugin install implement@talxis
+/plugin marketplace add david-hudec-networg/skills
+/plugin install implement@talxis-preview
 ```
