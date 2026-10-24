@@ -19,7 +19,7 @@ Those are step 4, and they are yours.
 ## Ask the CLI first
 
 Wherever this skill says `ubml`, run the pinned preview release:
-`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.2/ubml-1.4.2-preview.2.tgz <command>`
+`npx --yes https://github.com/david-hudec-networg/ubml/releases/download/v1.4.2-preview.3/ubml-1.4.2-preview.3.tgz <command>`
 
 ```
 ubml --help            # the command surface - the authority
