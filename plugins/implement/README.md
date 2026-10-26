@@ -1,14 +1,14 @@
 # implement
 
-Build TALXIS / Power Platform apps in a local-first monorepo. Seven skills, one per
+Build TALXIS / Power Platform apps in a local-first monorepo. One skill per
 developer intent — each steers the agent to the
 [TALXIS CLI (`txc`)](https://github.com/TALXIS/tools-cli) for the *how* and carries
-only what the CLI can't answer yet. Installing this plugin also registers the `txc`
-MCP server.
+only what the CLI can't answer yet. The plugin ships skills only: the agent runs `txc`
+as a CLI, there is no MCP server to register.
 
 | Skill | Use when… |
 |---|---|
-| `init` | beginning a session: check workspace state, scaffold a new project, orient in an existing one |
+| `init` | starting work in a repository: the machine's tools, orient in an existing one, scaffold a new one |
 | `data-model` | creating database tables, columns, relationships, enumerations |
 | `backend` | server-side validation, automation, business rules |
 | `frontend` | screens, pages, forms, lists, navigation, UI components |
