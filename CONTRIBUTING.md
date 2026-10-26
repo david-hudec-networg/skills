@@ -23,14 +23,19 @@ This fork is a preview channel for TALXIS/skills: it ships changes before, or in
    limitation, add the gap to [TOOLING-BACKLOG.md](TOOLING-BACKLOG.md) instead and
    keep the workaround in a reference file that names it.
 
+   Scaffold templates run post-actions that can fail without an error
+   (TALXIS/tools-devkit-templates#177): for each command a reference says what the
+   outcome should be and how to check it (`dotnet sln list`, a generated file, an entry
+   in `Solution.xml`), so the agent can verify it and repair what is missing.
+
 ## Skill standard (enforced by `scripts/validate.mjs` on every PR)
 
 - Body skeleton: contract line → "ask the CLI first" → intent→type mapping →
   sequence → invariants → references. Target ≤ ~70 lines.
 - No `--param` enumerations in SKILL.md — `parameter list` is the authority. A
   specific parameter may appear only when it encodes an invariant.
-- Zero toolchain prose: no version checks, installs, or updates (that's `txc doctor`,
-  T1). Machine-checked.
+- Zero toolchain prose: no version checks, installs, or updates. The `init`
+  skill points to `agentbox`, which owns them. Machine-checked.
 - Frontmatter: single-line `name:` (= directory name) and `description:` (≤ 1024
   chars, contains "Use when …", platform-agnostic vocabulary with Dataverse/Power
   Platform as trigger keywords only).
@@ -51,7 +56,7 @@ When the named fix ships, delete the file and shrink the skill.
 
 ## Manifests
 
-`plugin.json` (Agent Plugins 1.0) and `mcp.json` are the source of truth;
+`plugin.json` (Agent Plugins 1.0) and, for plugins that ship an MCP server, `mcp.json` are the source of truth;
 `.claude-plugin/plugin.json` and `.mcp.json` are generated — never edit them:
 
 ```

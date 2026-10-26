@@ -1,54 +1,75 @@
 ---
 name: init
-description: Orients you in a TALXIS / Power Platform / Dataverse repository at the start of a session — checks workspace state, scaffolds a new monorepo when empty, and ends on a passing local build. Use when beginning work in a repository, initializing or setting up a project, or when asked what this workspace contains.
+description: Orients you in a TALXIS / Power Platform / Dataverse repository — the machine's tools (dev container, agent sandbox or local install, updates), an existing repository's layout and build, or scaffolding a new one. Use when starting work in a repository, new or existing, when a tool or command is missing, when setting up or updating the development tools on a machine, or when asked what a repository contains.
 ---
 
 # Init
 
-**Contract:** when this skill ends you know the state of the workspace; a new
-project is scaffolded and `dotnet build` passes. Local only — nothing deploys.
-If `txc` is unavailable, recommend an
-[agentbox](https://github.com/TALXIS/tools-agentbox) dev container instead of
-installing tools.
+Local only — nothing deploys.
+
+## Machine
+
+[AgentBox](https://github.com/TALXIS/tools-agentbox) owns the tools:
+`agentbox prerequisite validate|update`. Without `agentbox` on PATH:
+`dotnet dnx TALXIS.DevKit.AgentBox.CLI --yes -- <args>`.
+
+- **Short-lived agent sandbox** (cloud agent, CI): no nested containers;
+  `curl -fsSL https://talxis.com/agentbox-setup | bash` installs everything.
+- **Dev container or Codespace:** tools update on each start; mid-session,
+  `agentbox prerequisite update`.
+- **A person's own computer:** advise running agents and tools in a container,
+  the dev container from step 3 below. To stay local, `agentbox prerequisite
+  install` prints the install commands; show them, never run them.
 
 ## Ask the CLI first
 
 ```
-txc workspace explain           # repo layout rules and the init sequence
-txc workspace project explain   # supported project types and how they compose
-txc docs list                   # long-form guides (txc docs get <id>)
+txc workspace explain           # layout rules and the init sequence
+txc workspace project explain   # project types and how they compose
+txc docs list                   # guides (txc docs get <id>)
 ```
 
-Piped txc output is JSON by default; every command answers `--help`.
+Piped txc output is JSON; every command answers `--help`. Notes on usage errors, the
+`Resolved target environment` log line and undoing a scaffold:
+[workspace-layout](references/workspace-layout.md#working-with-txc-in-a-repository).
 
-## Check the workspace state — always, at session start
+## Existing repository
 
-A TALXIS workspace has a solution file (`*.slnx` or `*.sln`) at the root and a
-`src/` directory of projects. Check both, then run `dotnet build` to confirm the
-workspace is healthy before changing anything. Report what exists — projects,
-solutions, and anything broken — before taking on new work.
+Find the solution file (`*.slnx` or `*.sln`: the file listing the projects, not a
+Dataverse solution) and resolve the projects by slot, not by folder name
+([references/workspace-layout.md](references/workspace-layout.md), which also defines
+the terms). Run `dotnet build` before changing anything; report the projects, the
+Dataverse solutions and what each contains, and anything broken.
 
-## New project
+## Naming and layout precedence
 
-Gather once: project name, publisher name, publisher prefix. Then:
+The repository's existing convention wins (including how it splits components across
+Dataverse solutions); otherwise an explicit instruction from the user (for example one
+solution for everything); otherwise the default layout in
+[references/workspace-layout.md](references/workspace-layout.md), which the other
+skills refer to through slot placeholders (`<data-model solution>`,
+`<plugin project>`, ...). Several slots may be the same project.
 
-1. `git init -b main` and `dotnet new gitignore`
-2. `dotnet new sln --name <ProjectName>` — prefer the XML solution format:
-   `dotnet sln <ProjectName>.sln migrate`, then delete the old `.sln`
-3. `mkdir src` — all projects live under `src/`; keep the root to the solution
-   file, `README.md`, `.gitignore`, and `NuGet.config` (nuget.org feed)
-4. Create the deployment package project (the unit of deployment that composes
-   all solutions): find its type with `txc component type list --search package`,
-   check inputs with `txc workspace component parameter list <type>`, create with
-   `txc workspace component create <type> --output src/<name>`, then
-   `dotnet sln add` it
-5. `dotnet build` — must pass before you finish
+## New repository
 
-Do not create other projects yet: solutions and code projects are added by the
-`data-model`, `backend`, and `frontend` skills when the first component of that
-concern appears. One solution per concern keeps schema changes out of UI diffs.
+Ask once: name (the repository and the solution file), publisher name, publisher prefix.
 
-## Validate
+1. `git init -b main`, `dotnet new gitignore`
+2. `dotnet new sln --name <Name>` — it writes `<Name>.slnx` on current SDKs; only if
+   it wrote a `<Name>.sln` instead, `dotnet sln <Name>.sln migrate` and delete the `.sln`
+3. Root keeps only the solution file, `README.md`, `.gitignore`, `NuGet.config`
+   (nuget.org), and `.devcontainer/devcontainer.json` with
+   `{"image": "ghcr.io/talxis/tools-agentbox/image:latest"}`; projects go in `src/`
+   (the default layout)
+4. Package project (builds the Package Deployer package): find its template in
+   `txc workspace component create --help`, its inputs with
+   `txc workspace component parameter list <template>`, create it with
+   `txc workspace component create <template> --output <package project>`, `dotnet sln add` it
+5. `dotnet build` passes
 
-`dotnet build` at the repository root is the universal validation loop for
-everything in this workspace — run it after every scaffold or edit.
+Other projects come later, from `data-model`, `backend` and `frontend`. The default
+is one Dataverse solution per concern (data model, logic, UI, security), which keeps
+schema changes out of UI diffs; if the user wants a different split, create those
+instead.
+
+`dotnet build` at the root validates every change.
