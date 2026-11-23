@@ -1,6 +1,6 @@
 ---
 name: promote-to-model
-description: In a UBML business-modeling workspace, promotes reviewer-validated insights into the canonical operational model - actors, entities, processes, metrics - business entities in the model, not Dataverse tables (the implement plugin's data-model skill owns those). Third step of the extract-insights → validate-insights → promote-to-model → validate-model pipeline. Use when insights have been validated and the UBML business model should be created or extended, or when asked to add actors, entities, or processes to a UBML workspace.
+description: In a UBML business-modeling workspace, promotes reviewer-validated insights into the canonical operational model - actors, entities, processes and their use cases, metrics - business entities in the model, not Dataverse tables (the implement plugin's data-model skill owns those). Third step of the extract-insights → validate-insights → promote-to-model → validate-model pipeline. Use when insights have been validated and the UBML business model should be created or extended, or when asked to add actors, entities, processes or use cases to a UBML workspace.
 ---
 
 # Promote to model
@@ -119,6 +119,23 @@ and every later change to the tail has to be made in every copy.
 Split on a second real ending, a subprocess that genuinely runs for unrelated
 callers, or a file grown past reading. An abort is an exit in `endsWith`, not a
 separate outcome.
+
+## Use cases
+
+**A use case is one actor's part of a process: one goal, one sitting, a
+result of business value.** `usecases` on the process (`ubml help usecases`).
+Most arrive proposed from extraction, where the source stated them. The cut
+left here is the one no single claim states: group a process's steps by who
+works through them toward which goal, and propose it like any other join.
+
+- Steps first; a use case lists steps of its own process, each step in one
+  use case. A system's step in the same sitting belongs to the actor's.
+- `goal` and `result` only as a source states them. Left out, `validate`
+  asks for them; invented, nobody does.
+- Each outcome of a decision is a link with a `condition`, so the ways
+  through the use case can be read from the model. An outcome no source
+  names stays out, and `validate` warns that the decision has one way out.
+- No `next`: the use case that follows is read from the links leaving it.
 
 ## Invariants
 
