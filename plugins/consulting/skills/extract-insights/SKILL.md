@@ -74,6 +74,13 @@ manual edit.
    the proposal's job to surface. Say so in the proposal's description and let
    the reviewer settle it. Guessing here is how the wrong reading gets promoted.
 
+   **A use case the source states is a proposal like any other**: one actor's
+   part of a process - one goal, one sitting, a result - written as `usecases`
+   on that process (`ubml help usecases`). It lists steps, so propose the steps
+   first. A "scenario" in an analyst's use case is a way through it: draw each
+   outcome as a link with a `condition` from the decision step. Never write it
+   to UBML `scenarios` - those are simulation what-ifs.
+
 5. **Link, don't merge.** A second source repeating a claim becomes a second
    insight `related` to the first - silent de-duplication destroys the
    corroboration. Contradictions are related and both stay `proposed`. A later
